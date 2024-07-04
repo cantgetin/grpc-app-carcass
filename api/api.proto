@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "pkg/api";
+
+import "validate/validate.proto";
+
+service SampleService {
+  rpc SampleHandler(SampleRequest) returns (SampleResponse) {}
+}
+
+message SampleRequest {
+  string email = 3 [(validate.rules).string.email = true];
+  string id = 2 [(validate.rules).string.uuid = true];
+}
+
+message SampleResponse {
+  string name = 1;
+}
+
